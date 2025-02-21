@@ -4,7 +4,7 @@ public class TP01Q01 {
 
 		boolean isfim = false;
 
-		do {
+		do { 
 			String palavra = MyIO.readLine();
 			boolean resp = false;
 			char[] vetor = palavra.toCharArray();
