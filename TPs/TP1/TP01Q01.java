@@ -1,20 +1,17 @@
-import java.util.Scanner;
-
 public class TP01Q01 { 
 	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
+		
 
 		boolean isfim = false;
 
 		do {
-			String palavra = scanner.nextLine();
+			String palavra = MyIO.readLine();
 			boolean resp = false;
 			char[] vetor = palavra.toCharArray();
 			char[] palindromo = new char[vetor.length];
 
-			if (!palavra.equalsIgnoreCase("FIM")) {
-
-				isfim = true;
+			if (palavra.equalsIgnoreCase("FIM")) {
+                isfim = true;
 			}
 
 
@@ -34,14 +31,13 @@ public class TP01Q01 {
 				}
 			}
 
-			if(resp) {
-				System.out.println("SIM");
-			} else {
-				System.out.println("NÃO");
+			if(resp == true && isfim != true) {
+				MyIO.println("SIM");
+			} else if (resp == false && isfim != true) {
+				MyIO.println("NAO");
 			}
 
-		} while(isfim);
+		} while(!isfim);
 
-		scanner.close();
 	}
 }
