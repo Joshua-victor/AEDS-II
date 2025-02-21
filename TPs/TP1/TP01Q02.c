@@ -22,7 +22,7 @@ if (strcmp(palavra, "FIM") == 0) {
 	memcpy(palindromo, palavra, tamanho); // memcpy serve para fazer a copia de vetores
 
 	int j = 0;
-	for (int i = 0; palavra[i] != '\0'; i++) { // for para tirar os espaC'os da palavra
+	for (int i = 0; palavra[i] != '\0'; i++) { // for para tirar os espaços da palavra
 		if (palavra[i] != ' ') {
 			palavra[j++] = palavra[i];
 		}
@@ -35,21 +35,23 @@ if (strcmp(palavra, "FIM") == 0) {
 
 	for(int i = 0; i < tamanho; i++) { // for para comparar se sC#o iguais
 
-		if(palavra[i] == palindromo[tamanho - 1 - i]) {
-			resp = true;
-		} else {
-			resp =false;
-			i = tamanho;
-		}
+	 if (strcmp(palavra, palindromo) == 0) {
+        
+        resp = true;
+        
+    } else {
+        resp = false;
+        i = tamanho;
+    }
 
 
 	}
 
 
 	if(resp == true) {
-		printf("SIM");
+		printf("SIM\n");
 	} else {
-		printf("NAO");
+		printf("NAO\n");
 	}
 	
 	}while(1);
