@@ -24,7 +24,7 @@ public class TP01Q03
 				MyIO.print(c);
 			}
 			MyIO.print();
-			MyIO.println(" ");
+			MyIO.println("");
 			
 		} while(resp == true);
 
