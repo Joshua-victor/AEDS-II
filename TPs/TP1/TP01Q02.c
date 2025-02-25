@@ -5,7 +5,7 @@
 int main()
 {
 
-	bool isfim = true;
+	bool isfim = true; 
 	do {
 		bool resp = true;  // variavel para falar se é palindromo ou não
 		char palavra[100];
