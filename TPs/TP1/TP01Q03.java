@@ -4,7 +4,7 @@ public class TP01Q03
 
 		boolean resp = true; // bool para a condiC'C#o de parada
 		String palavra;
-		do {
+		do { 
 
 			palavra  = MyIO.readLine(); //lendo a string digitada pelo usuC!rio
 			char[] caracteres = palavra.toCharArray(); //transformando em vetor
