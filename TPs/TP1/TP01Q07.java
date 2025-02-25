@@ -3,7 +3,7 @@ public class TP01Q07 {
 	public static void main(String[] args) {
 		String Palavra;
 		boolean isfim = false;
-		do {
+		do { 
 		    
 			Palavra = MyIO.readLine(); // leitura da palavra
 			char[] vet = Palavra.toCharArray(); // transformando em vetor
