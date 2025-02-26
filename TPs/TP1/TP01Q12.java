@@ -57,7 +57,7 @@ public class TP01Q12
 			if(check1 && check2 && check3 && check4) {
 				MyIO.println("SIM");
 			} else {
-				MyIO.println("NAO");
+				MyIO.println("NÃO");
 			}
 
 		} while(isfim != true);
