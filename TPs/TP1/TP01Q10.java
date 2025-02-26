@@ -1,11 +1,13 @@
+import java.util.Scanner;
 public class TP01Q10
 {
 	public static void main(String[] args) {
+	    Scanner scanner = new Scanner(System.in);
 	    
 	    boolean isfim = false;
 	    do{
 	    
-	    String palavra = MyIO.readLine();
+	    String palavra = scanner.nextLine();
 	    char[] vet = palavra.toCharArray();
 	    int contagem = 1;
 	    int tamanho = vet.length;
@@ -22,13 +24,15 @@ public class TP01Q10
 	        }
 	    }
 	     
-	    MyIO.print(contagem);
-	    MyIO.println(" ");
+	    System.out.print(contagem);
+	    System.out.println(" ");
+	    
+	    
 	    
 	    }while(isfim != true);
+	    scanner.close();
 		
 	}
 }
-
 
 
