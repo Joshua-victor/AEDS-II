@@ -1,26 +1,28 @@
+import java.util.Scanner;
+
 public class TP01Q12
 {
 	public static void main(String[] args) {
+		Scanner scanner = new Scanner (System.in);
+	
+
 
 		boolean isfim = false;
 		do {
 
-			String palavra = MyIO.readString();
+			String palavra = scanner.nextLine();
+			//String palavra = MyIO.readLine();
 			char [] senha = palavra.toCharArray();
 			int tamanho = senha.length;
 			boolean maiuscula = false;
 			boolean minuscula = false;
 			boolean especial = false;
 			boolean numero = false;
-			boolean check1 = false;
-			boolean check2 = false;
-			boolean check3 = false;
-			boolean check4 = false;
 			int i = 0;
-			
-			if(palavra.equalsIgnoreCase("FIM")){
-			    isfim = true;
-			    break;
+
+			if(palavra.equalsIgnoreCase("FIM")) { // função para ver se a palavra digitada é FIM
+				isfim = true;
+				break;
 			}
 
 			if(tamanho < 8) {
@@ -30,40 +32,40 @@ public class TP01Q12
 
 			for( i = 0 ;  i < tamanho; i++) {
 
-				if(Character.isUpperCase(senha[i]) && check1 == false) { // isupper verifica se o vetor e Maiusculo
+				if(Character.isUpperCase(senha[i])) { // isupper verifica se o vetor e Maiusculo
 
 					maiuscula = true;
-					check1 = true;
+					
 
-				} else if(Character.isLowerCase(senha[i]) && check2 == false ) { // islower verifica se o vetor C) minusculo
+				} else if(Character.isLowerCase(senha[i])) { // islower verifica se o vetor C) minusculo
 
 					minuscula = true;
-					check2 = true;
+				
 
-				} else if(Character.isLetterOrDigit(senha[i]) && check3 == false ) { // ispunct verifica se o vetor C) especial
+				} else if(!Character.isLetterOrDigit(senha[i])) { // ispunct verifica se o vetor C) especial
 
 					especial = true;
-					check3 = true;
+					
 
-				} else if(Character.isDigit(senha[i]) && check4 == false ) { // isdigit verifica se o vetor C) numero
+				} else if(Character.isDigit(senha[i])) { // isdigit verifica se o vetor C) numero
 
 					numero = true;
-					check4 = true;
+					
 				}
 
 			}
 
 
-			if(check1 && check2 && check3 && check4) {
-				MyIO.println("SIM");
+			if(maiuscula && minuscula && especial && numero && tamanho >= 8) {
+				System.out.println("SIM");
 			} else {
-				MyIO.println("NÃO");
+				 System.out.println("\u004E\u00C3\u004F"); // digitando não pela tabela unicode
 			}
 
 		} while(isfim != true);
+		scanner.close();
 
 	}
 }
-
 
 
