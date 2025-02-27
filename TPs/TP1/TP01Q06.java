@@ -5,7 +5,7 @@ public class TP01Q06
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 
-		boolean efim = false;
+		boolean efim = false; 
 		do {
 
 			String palavra = scanner.nextLine().toUpperCase();
