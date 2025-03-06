@@ -8,7 +8,7 @@ void TrocaRecursiva(int tamanho, int j, int i,  char *palavra, char *invertida) 
 		return;
 	}
 
-	invertida[i] = palavra[j];
+	invertida[i] = palavra[j]; 
 
 	TrocaRecursiva(tamanho, j - 1, i + 1, palavra, invertida);
 }
