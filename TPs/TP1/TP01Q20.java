@@ -8,7 +8,7 @@ public class TP01Q20
 		if(i == tamanho) {
 			return;
 		}
-		if (vet[i] >= 'A' && vet[i] <= 'Z') { // C	 uma letra
+		if (vet[i] >= 'A' && vet[i] <= 'Z') { // C 	 uma letra
 			if (vet[i] == 'A' || vet[i] == 'E' || vet[i] == 'I' || vet[i] == 'O' || vet[i] == 'U') {
 				resp[1] = false; // Se tem vogal, nC#o pode ser sC3 consoante
 			} else {
