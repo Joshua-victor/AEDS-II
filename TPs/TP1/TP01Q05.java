@@ -8,7 +8,7 @@ class TP01Q05 {
             }
         }
         return resultado;
-    }
+    } 
 
     public static boolean or(String aux) { 
         boolean resultado = false;
