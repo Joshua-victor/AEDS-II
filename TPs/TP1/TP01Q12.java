@@ -59,7 +59,7 @@ public class TP01Q12
 			if(maiuscula && minuscula && especial && numero && tamanho >= 8) {
 				System.out.println("SIM");
 			} else {
-				 System.out.println("\u004E\u00C3\u004F"); // digitando não pela tabela unicode
+				 System.out.println("NAO"); // digitando não pela tabela unicode
 			}
 
 		} while(isfim != true);
