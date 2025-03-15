@@ -8,24 +8,49 @@ class Ponteiro {
 public class Main
 {
 
+	public static void inverter(int[] lista, Ponteiro quantidade, int tamanho) {
+	    
+	    
+	    if( quantidade.n == 0){
+	        System.out.println("Lista vazia!!");
+	        return;
+	    }
+	    
+
+		int[] inverso = new int[quantidade.n]; // cria uma nova lista para armazenar os elementos inversos
+		int j = quantidade.n - 1;
+
+		for(int i = 0; i < quantidade.n; i++) {
+
+
+			inverso[i] = lista[j];
+			j--;
+		}
+
+	        mostrar(inverso, quantidade); // chama a funão para mostrar a lista inversa
+
+	}
+
+
+
 	public static void pesquisar(int numero, int[] lista, Ponteiro quantidade) {
 
 		boolean achou = false;
-		for (int i = 0; i < quantidade.n; i++) {
-			
-			if(lista[i] == numero){
-			    System.out.println("Numero encontrado na pos: " + i);
-			    i = quantidade.n;
-			    achou = true;
+		for (int i = 0; i < quantidade.n; i++) { // percorre toda a lista 
+
+			if(lista[i] == numero) {
+				System.out.println("Numero encontrado na pos: " + i);
+				i = quantidade.n;
+				achou = true;
 			}
-			
-			
+
+
 		}
-		if(achou != true){
-			    System.out.println("Numero não encontrado!");
-			    
-			}
-		
+		if(achou != true) {
+			System.out.println("Numero não encontrado!");
+
+		}
+
 	}
 
 
@@ -33,7 +58,7 @@ public class Main
 	public static void mostrar(int[] lista, Ponteiro quantidade) {
 
 		System.out.print("[");
-		for (int i = 0; i < quantidade.n; i++) {
+		for (int i = 0; i < quantidade.n; i++) { // for de 0 a quantidade.n (onde tem elementos)
 			System.out.print(lista[i]);
 			System.out.print(" ");
 		}
@@ -42,18 +67,15 @@ public class Main
 
 	public static void remover(int pos, int[] lista, Ponteiro quantidade, int tamanho) {
 
-		try {
-			if( pos < 0 || pos > quantidade.n) { // verifica se  tem espaC'o, se pos nC#o e negativo, se pos nC#o C) maior que a lista
 
-			}
-		} catch(ArrayIndexOutOfBoundsException e) {
-			System.out.println("Lista cheia ou pos invC!lida!");
+			if( pos < 0 || pos > quantidade.n) { // verifica se  tem espaço, se pos não e negativo, se pos não é maior que a lista
+			System.out.println("Lista cheia ou pos invalida!");
+			return;
 		}
 
+		quantidade.n--;     // diminui o quantidade.n, para tratar o elemento em questão como lixo
 
-		quantidade.n--;
-
-		for(int i = pos; i < quantidade.n; i++) {
+		for(int i = pos; i < quantidade.n; i++) {  // move os elementos do final ate a posição excluida
 
 
 			lista[i] = lista[i+1];
@@ -68,12 +90,10 @@ public class Main
 
 	public static int removerFim(int[] lista, Ponteiro quantidade, int tamanho) {
 
-		try {
-			if(quantidade.n  == 0  ) { // verifica se a lista nC#o esta vazia
 
-			}
-		} catch(ArrayIndexOutOfBoundsException e) {
-			System.out.println("Lista cheia ou pos invC!lida!");
+			if(quantidade.n  == 0  ){
+			System.out.println("Lista cheia ou pos inválida!");
+			return 0;
 		}
 
 		int removido = lista[quantidade.n];
@@ -89,12 +109,10 @@ public class Main
 
 	public static int removerInicio(int[] lista, Ponteiro quantidade, int tamanho) {
 
-		try {
-			if(quantidade.n  == 0  ) { // verifica se a lista nC#o esta vazia
 
-			}
-		} catch(ArrayIndexOutOfBoundsException e) {
-			System.out.println("Lista cheia ou pos invC!lida!");
+			if(quantidade.n  == 0  ) { // verifica se a lista não esta vazia
+			System.out.println("Lista cheia ou pos inválida!");
+			return 0 ;
 		}
 
 		int removido = lista[0];
@@ -116,11 +134,11 @@ public class Main
 	public static void inserir(int pos, int numero, int[] lista, Ponteiro quantidade, int tamanho) {
 
 		try {
-			if(quantidade.n  >= tamanho || pos < 0 || pos > quantidade.n) { // verifica se  tem espaC'o, se pos nC#o e negativo, se pos nC#o C) maior que a lista
+			if(quantidade.n  >= tamanho || pos < 0 || pos > quantidade.n) { // verifica se  tem espaço, se pos não e negativo, se pos não C) maior que a lista
 
 			}
 		} catch(ArrayIndexOutOfBoundsException e) {
-			System.out.println("Lista cheia ou pos invC!lida!");
+			System.out.println("Lista cheia ou pos inválida!");
 		}
 
 
@@ -140,29 +158,23 @@ public class Main
 
 	public static void inserirFim( int numero, int[] lista, Ponteiro quantidade, int tamanho) {
 
-		try {
+
 			if(quantidade.n  >= tamanho) {
-
-			}
-		} catch(ArrayIndexOutOfBoundsException e) {
 			System.out.println("Lista cheia!");
+			return;
 		}
-
 
 		lista[quantidade.n] = numero;
 		quantidade.n++;
-
-
 	}
+	
 
 	public static void inserirInicio(int numero, int[] lista, Ponteiro quantidade, int tamanho) {
 
-		try {
-			if(quantidade.n >= tamanho) {
 
-			}
-		} catch(ArrayIndexOutOfBoundsException e) {
+			if(quantidade.n >= tamanho) {
 			System.out.println("Lista cheia!");
+			return;
 		}
 
 		for(int i = quantidade.n; i > 0; i--) {
@@ -184,9 +196,9 @@ public class Main
 
 		do {
 
-			System.out.println("---------------------------------------------------------------------");
-			System.out.println("\nbem vindo aos exemplos de TAD, aqui temos algumas opC'C5es para treinar \ntemos as opC'C5es:\n a - inserir no inicio\n b - inserir no fim\n c - inserir em alguma posiC'C#o\n d - remover no inicio\n e - remover no fim\n f - remover\n g - mostrar\n h - pesquisar\n FIM - para sair do programa\n ");
-			System.out.println("---------------------------------------------------------------------");
+			System.out.println("--------------------------------------------------------------------------");
+			System.out.println("\nbem vindo aos exemplos de TAD, aqui temos algumas opções para treinar \ntemos as opções:\n a - inserir no inicio\n b - inserir no fim\n c - inserir em alguma posição\n d - remover no inicio\n e - remover no fim\n f - remover\n g - mostrar\n h - pesquisar\n i - Inverter elementos\n FIM - para sair do programa\n ");
+			System.out.println("--------------------------------------------------------------------------");
 
 			System.out.print("digite a escolha que deseja:");
 			String escolha = Scanner.nextLine();
@@ -226,7 +238,7 @@ public class Main
 				System.out.print("Digite o numero desejado: ");
 				numero = Scanner.nextInt();
 				Scanner.nextLine();
-				System.out.print("Digite a posiC'C#o desejada: ");
+				System.out.print("Digite a posição desejada: ");
 				pos = Scanner.nextInt();
 				Scanner.nextLine();
 				inserir(pos, numero, lista, ponteiro, lista.length);
@@ -249,7 +261,7 @@ public class Main
 
 			case "f":
 
-				System.out.print("Digite a posiC'C#o desejada: ");
+				System.out.print("Digite a posição desejada: ");
 				pos = Scanner.nextInt();
 				Scanner.nextLine();
 				remover(pos, lista, ponteiro, lista.length);
@@ -266,6 +278,10 @@ public class Main
 				numero = Scanner.nextInt();
 				Scanner.nextLine();
 				pesquisar(numero, lista, ponteiro);
+				break;
+
+			case "i":
+				inverter(lista, ponteiro, lista.length);
 				break;
 
 			default:
