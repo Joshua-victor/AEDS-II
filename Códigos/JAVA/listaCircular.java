@@ -13,7 +13,7 @@ public class listaCircular
 
 
 		if(((pos.ultimo + 1) % tamanho) == pos.primeiro) {
-			System.out.print("ERRO!");
+			System.out.println("ERRO LISTA CHEIA!!");
 			return;
 		}
 
@@ -28,7 +28,7 @@ public class listaCircular
 
 
 		if(pos.ultimo == pos.primeiro) {
-			System.out.print("ERRO!");
+			System.out.println("ERRO LISTA VAZIA!!");
 			return;
 		}
 
