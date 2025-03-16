@@ -1,32 +1,27 @@
 import java.util.Scanner;
 public class TP01Q11 {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner (System.in);
-        boolean isFim = false;
-        do {
-            String palavra = scanner.nextLine(); // Lê a entrada
-            if (palavra.equalsIgnoreCase("FIM")) {
-                isFim = true;
-                break;
-            }
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner (System.in);
+		boolean isFim = false;
+		do {
+			String palavra = scanner.nextLine(); // LC* a entrada
+			if (palavra.equalsIgnoreCase("FIM")) {
+				isFim = true;
+				break;
+			}
 
-            int[] frequencia = new int[256]; // Array para contar ocorrências dos caracteres
-            int repetidos = 0;
+			int maior = 0;
+			int[] ultimoIndice = new int[256]; 
+			for (int i = 0, j = 0; j < palavra.length(); j++) {
+				i = Math.max(ultimoIndice[palavra.charAt(j)], i);
+				maior = Math.max(maior, j - i + 1); 
+				ultimoIndice[palavra.charAt(j)] = j + 1;
+			}
 
-            for (char c : palavra.toCharArray()) {
-                frequencia[c]++;
-            }
+			System.out.println(maior);
 
-            for (int freq : frequencia) {
-                if (freq > 1) {
-                    repetidos++;
-                }
-            }
 
-            MyIO.println(repetidos); 
-            
-
-        } while (!isFim);
-        scanner.close();
-    }
+		} while (!isFim);
+		scanner.close();
+	}
 }
