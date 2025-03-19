@@ -1,6 +1,6 @@
 
 public class LAB01Q02
-{
+{ 
 
 public static int contarMaiusculas(char[] vet, int tamanho) {
         int maiuscula = 0;
