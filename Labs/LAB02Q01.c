@@ -7,7 +7,7 @@ int main() {
 
     while(scanf("%s %s", palavra1, palavra2) != EOF){
     
-    int tamanho1 = strlen(palavra1);
+    int tamanho1 = strlen(palavra1); 
     int tamanho2 = strlen(palavra2);
     
     char combinatoria[tamanho1 + tamanho2 + 1]; // +1 por conta do /0 
