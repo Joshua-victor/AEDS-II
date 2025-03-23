@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class LAB02Q02 {
+public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -11,9 +11,13 @@ public class LAB02Q02 {
                 break;
             }
 
-            int numero1 = Integer.parseInt(linha);
+            String[] partes = linha.split(" ");
+            if (partes.length < 2) { 
+                break;
+            }
 
-            int numero2 = Integer.parseInt(scanner.nextLine().trim());
+            int numero1 = Integer.parseInt(partes[0]);
+            int numero2 = Integer.parseInt(partes[1]);
 
             int[] vet = new int[20];
             int valor = 0;
