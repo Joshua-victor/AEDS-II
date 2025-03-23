@@ -4,20 +4,10 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        while (true) {
-            String linha = scanner.nextLine().trim();
-
-            if (linha.isEmpty()) { 
-                break;
-            }
-
-            String[] partes = linha.split(" ");
-            if (partes.length < 2) { 
-                break;
-            }
-
-            int numero1 = Integer.parseInt(partes[0]);
-            int numero2 = Integer.parseInt(partes[1]);
+        while (scanner.hasNext()) {
+        
+            int numero1 = scanner.nextInt();
+            int numero2 = scanner.nextInt();
 
             int[] vet = new int[20];
             int valor = 0;
@@ -48,6 +38,7 @@ public class Main {
             }
             System.out.println();
         }
-        scanner.close();
+
+        scanner.close();  
     }
 }
