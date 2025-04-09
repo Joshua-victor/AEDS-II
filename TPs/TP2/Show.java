@@ -8,15 +8,35 @@ public class Show {
     private String director;
     private String[] cast;
     private String country;
-    private LocalDate dateAdded;
+    private Date dateAdded;
     private int releaseYear;
     private String rating;
     private String duration;
     private String[] listedIn;
-
+    
+    
+    
+    public Show(){
+        
+        this.showId = "";
+        this.type = "";
+        this.title = "";
+        this.director = "";
+        this.cast = null;
+        this.country = "";
+        this.dateAdded = null;
+        this.releaseYear = 0;
+        this.rating = "";
+        this.duration = "";
+        this.listedIn = null;
+        
+        
+        
+    }
+    
     // Construtor  (o nome do contrutor deve ser o mesmo da classe) (usados para inicializar os atributos da classe)
     public Show(String showId, String type, String title, String director, String[] cast, String country, 
-                LocalDate dateAdded, int releaseYear, String rating, String duration, String[] listedIn) {
+                Date dateAdded, int releaseYear, String rating, String duration, String[] listedIn) {
         this.showId = showId;
         this.type = type;
         this.title = title;
@@ -57,7 +77,7 @@ public class Show {
         return this.country;
     }
     
-    public LocalDate getDateAdded() {
+    public Date getDateAdded() {
         return this.dateAdded;
     }
     
@@ -104,7 +124,7 @@ public class Show {
         this.country = country;
     }
 
-    public void setDateAdded(LocalDate dateAdded) {
+    public void setDateAdded(Date dateAdded) {
         this.dateAdded = dateAdded;
     }
 
@@ -123,4 +143,30 @@ public class Show {
     public void setListedIn(String[] listedIn) {
         this.listedIn = listedIn;
     }
+    
+    //clone
+    public Show clone(){
+        
+        return new Show(this.showId, this.type, this.title, this.director, this.cast, this.country, this.dateAdded, this.releaseYear, this.rating, this.duration, this.listedIn);
+    
+    }
+    
+    
+    public void mostrar() {
+
+        System.out.println("=>"
+            + this.getShowId() + " ## "
+            + this.getType() + " ## "
+            + this.getTitle() + " ## "
+            + (this.getDirector() == "" ? "NaN" : this.getDirector()) + " ## "
+            +"[" + (this.getCast() == null ? "NaN" : this.getCast()) + "] " + " ## "
+            + (this.getCountry() == "" ? "NaN" : this.getCountry()) + " ## "
+            + (this.getDateAdded() == null ? "NaN" : this.getDateAdded()) + " ## "
+            + (this.getReleaseYear() == 0 ? "NaN" : this.getReleaseYear()) + " ## "
+            + (this.getRating() == null ? "NaN" : this.getRating()) + " ## "
+            + (this.getDuration() == "" ? "NaN" : this.getDuration()) + " ## "
+            +"[" + (this.getListedIn() == null ? "NaN" : this.getListedIn()) + "] " + " ## ");
+    }
+
+    
 }
