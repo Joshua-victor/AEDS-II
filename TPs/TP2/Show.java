@@ -1,4 +1,10 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+
 
 public class Show {
     
@@ -167,6 +173,51 @@ public class Show {
             + (this.getDuration() == "" ? "NaN" : this.getDuration()) + " ## "
             +"[" + (this.getListedIn() == null ? "NaN" : this.getListedIn()) + "] " + " ## ");
     }
+    
+    
+    public void ler(String linha){
+        
+       try{
+           
+           String[] partes = linha.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1); // split para separar cada atributo mesmo com virgulas dentro de aspas
+           
+           this.showId = partes[0];
+           this.type = partes[1];
+           this.title = partes[2];
+           this.director = partes[3].isEmpty() ? "NaN" : partes[3]; // if partes[3] vazia this.director = "NaN" else this.director = partes[3]
+           this.cast = partes[4].isEmpty() ? new String { "NaN" } : partes[4];
+           this.country = partes[5].isEmpty() ? "NaN" : partes[5];
+         //this.country = partes[5].isEmpty() ? "NaN" : partes[5]; parte para data
+           this.releaseYear = partes[7].isEmpty() : 0 : partes[7]
+           
+           
+           
+           
+           
+           
+           
+           
+       } 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }
+    
+    
 
     
 }
