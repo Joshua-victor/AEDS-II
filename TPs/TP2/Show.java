@@ -9,6 +9,8 @@ import java.util.Arrays;
 
 
 
+
+
  class Show {
     
     private String showId;
@@ -162,6 +164,7 @@ import java.util.Arrays;
     
     
     public void mostrar() {
+        SimpleDateFormat formater = new SimpleDateFormat("MMM dd, yyyy"); // formato para alinhar a data igual o csv
 
          System.out.println("=> "
         + this.getShowId() + " ## "
@@ -170,7 +173,7 @@ import java.util.Arrays;
         + this.getDirector() + " ## "
         + Arrays.toString(this.getCast()) + " ## "
         + this.getCountry() + " ## "
-        + this.getDateAdded() + " ## "
+        + formater.format(this.getDateAdded()) + " ## "
         + this.getReleaseYear() + " ## "
         + this.getRating() + " ## "
         + this.getDuration() + " ## "
@@ -179,13 +182,13 @@ import java.util.Arrays;
     
     
     public void ler(String linha){
-        SimpleDateFormat sdf = new SimpleDateFormat("MMMM d, yyyy");
+       SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy");
        // System.out.print("ENTREI");
         
        try{
            
            String[] partes = linha.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1); // split para separar cada atributo mesmo com virgulas dentro de aspas
-           
+
            this.showId = partes[0]; // alocando em showId a posição 0 de partes
            this.type = partes[1]; // alocando em type a posição 1 de partes
            this.title = partes[2].replaceAll("^\"|\"$", "").replaceAll("\"\"", ""); // alocando em title a posição 2 de partes
@@ -193,7 +196,7 @@ import java.util.Arrays;
            this.cast = partes[4].isEmpty() ? new String[] { "NaN" } : partes[4].replace("\"", "").split(",");;
            this.country = partes[5].isEmpty() ? "NaN" : partes[5]; // alocando em country a posição 5 de partes
            try {
-             this.dateAdded = partes[6].isEmpty() ? null : sdf.parse(partes[6]); //sdf.parse serve para converter uma string em formato de date
+             this.dateAdded = partes[6].isEmpty() ? null : sdf.parse(partes[6].replaceAll("^\"|\"$", "").replaceAll("\"\"", "")); //sdf.parse serve para converter uma string em formato de date
             } catch (Exception e) {
                 this.dateAdded = null;
                }
@@ -241,10 +244,6 @@ public class Main {
        }
        
        br.close();
-       
-       
-       
-       
 }
 }
 
