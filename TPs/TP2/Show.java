@@ -4,9 +4,10 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Scanner;
 
 
-public class Show {
+ class Show {
     
     private String showId;
     private String type;
@@ -182,20 +183,20 @@ public class Show {
            
            String[] partes = linha.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1); // split para separar cada atributo mesmo com virgulas dentro de aspas
            
-           this.showId = partes[0];
-           this.type = partes[1];
-           this.title = partes[2];
+           this.showId = partes[0]; // alocando em showId a posição 0 de partes
+           this.type = partes[1]; // alocando em type a posição 1 de partes
+           this.title = partes[2];// alocando em title a posição 2 de partes
            this.director = partes[3].isEmpty() ? "NaN" : partes[3]; // if partes[3] vazia this.director = "NaN" else this.director = partes[3]
            this.cast = partes[4].isEmpty() ? new String[] { "NaN" } : partes[4].replace("\"", "").split(",");;
-           this.country = partes[5].isEmpty() ? "NaN" : partes[5];
+           this.country = partes[5].isEmpty() ? "NaN" : partes[5]; // alocando em country a posição 5 de partes
            try {
              this.dateAdded = partes[6].isEmpty() ? null : sdf.parse(partes[6]); //sdf.parse serve para converter uma string em formato de date
             } catch (Exception e) {
                 this.dateAdded = null;
                }
-           this.releaseYear = partes[7].isEmpty() ? 0 : Integer.parseInt(partes[7]);
-           this.rating = partes[8].isEmpty() ? "NaN" : partes[8];
-           this.duration = partes[9].isEmpty() ? "NaN" : partes[9];
+           this.releaseYear = partes[7].isEmpty() ? 0 : Integer.parseInt(partes[7]); //Integer.parseInt usado para trasnformar uma string em Int
+           this.rating = partes[8].isEmpty() ? "NaN" : partes[8];// alocando em rating a posição 8 de partes
+           this.duration = partes[9].isEmpty() ? "NaN" : partes[9];// alocando em duration a posição 9 de partes
            this.listedIn = partes[10].isEmpty() ? new String[] { "NaN" } : partes[10].replace("\"", "").split(",");;
            
        } catch(Exception e){
@@ -211,3 +212,28 @@ public class Show {
 
     
 }
+
+public class Main {
+    public static void main(String[] args) {
+    Scanner Scanner =  new Scanner (System.in);
+        
+    ArrayList<String> lista = new ArrayList<>();    
+
+    
+        
+     while(true){ 
+     String linha = Scanner.nextLine();
+     if(linha.equalsIgnoreCase("FIM")){
+         break;
+     }
+     
+    
+        
+        
+       Scanner.close();
+  
+    }
+}
+
+
+
