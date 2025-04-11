@@ -176,6 +176,7 @@ public class Show {
     
     
     public void ler(String linha){
+        SimpleDateFormat sdf = new SimpleDateFormat("MMMM d, yyyy");
         
        try{
            
@@ -185,36 +186,25 @@ public class Show {
            this.type = partes[1];
            this.title = partes[2];
            this.director = partes[3].isEmpty() ? "NaN" : partes[3]; // if partes[3] vazia this.director = "NaN" else this.director = partes[3]
-           this.cast = partes[4].isEmpty() ? new String { "NaN" } : partes[4];
+           this.cast = partes[4].isEmpty() ? new String[] { "NaN" } : partes[4].replace("\"", "").split(",");;
            this.country = partes[5].isEmpty() ? "NaN" : partes[5];
-         //this.country = partes[5].isEmpty() ? "NaN" : partes[5]; parte para data
-           this.releaseYear = partes[7].isEmpty() : 0 : partes[7]
+           try {
+             this.dateAdded = partes[6].isEmpty() ? null : sdf.parse(partes[6]); //sdf.parse serve para converter uma string em formato de date
+            } catch (Exception e) {
+                this.dateAdded = null;
+               }
+           this.releaseYear = partes[7].isEmpty() ? 0 : Integer.parseInt(partes[7]);
+           this.rating = partes[8].isEmpty() ? "NaN" : partes[8];
+           this.duration = partes[9].isEmpty() ? "NaN" : partes[9];
+           this.listedIn = partes[10].isEmpty() ? new String[] { "NaN" } : partes[10].replace("\"", "").split(",");;
            
+       } catch(Exception e){
            
+           System.out.println("Erro ao ler a linha" + linha);
            
-           
-           
-           
-           
-           
-       } 
+       }
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
     }
     
     
