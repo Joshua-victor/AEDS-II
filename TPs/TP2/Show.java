@@ -230,21 +230,33 @@ public class Main {
        BufferedReader br = new BufferedReader(new FileReader("disneyplus.csv")); // leitura do arquivo 
        String CSV;
        br.readLine(); //pula a primeira linha do cabeçalho do CSV
-       
-       while((CSV = br.readLine()) != null){
-           
-           Show show = new Show();
-           show.ler(CSV);
-           
-           if (lista.contains(show.getShowId())) {
-                show.mostrar();
-           }
-           
-   
-       }
+       ArrayList<Show> todosShows = new ArrayList<>();
+        
+        for (int i = 0; i < lista.size(); i++) { // vai de 0 ao tamanho da lista de IDs coletados
+            String id = lista.get(i); // Pega o ID atual da lista de entrada
+            
+        
+        while ((CSV = br.readLine()) != null) {
+            Show s = new Show();
+            s.ler(CSV);
+            todosShows.add(s);
+        }
+
+
+        
+        for (int j = 0; j < todosShows.size(); j++) {
+            Show s = todosShows.get(j);
+
+        // Verifica se o ID do show atual é igual ao que o usuário digitou
+        if (s.getShowId().equals(id)) {
+            s.mostrar(); // Se for igual, mostra as informações do show
+            break; // Sai do laço interno, pois já encontrou esse ID
+        }
+    }
+}
+
        
        br.close();
 }
 }
-
 
