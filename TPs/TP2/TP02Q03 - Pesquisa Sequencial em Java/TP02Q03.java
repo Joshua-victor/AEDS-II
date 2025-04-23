@@ -159,28 +159,7 @@ import java.util.Arrays;
    
     }
    
-   
-    public void mostrar() {
-    // Ordena o casting (elenco) em ordem alfabética antes de exibir
-    String[] elencoOrdenado = this.getCast().clone();
-    Arrays.sort(elencoOrdenado);
-
-    System.out.println("=> "
-        + this.getShowId() + " ## "
-        + this.getTitle() + " ## "
-        + this.getType() + " ## "
-        + this.getDirector() + " ## "
-        + Arrays.toString(elencoOrdenado) + " ## "
-        + this.getCountry() + " ## "
-        + this.getDateAdded() + " ## "
-        + this.getReleaseYear() + " ## "
-        + this.getRating() + " ## "
-        + this.getDuration() + " ## "
-        + Arrays.toString(this.getListedIn()) + " ## ");
-}
-
-   
-    public void ler(String linha,  String  showId[], int aux){
+    public void ler(String linha){
       // SimpleDateFormat sdf = new SimpleDateFormat("MMMM dd, yyyy");
        // System.out.print("ENTREI");
        
@@ -193,6 +172,7 @@ import java.util.Arrays;
            this.title = partes[2].replaceAll("^\"|\"$", "").replaceAll("\"\"", ""); // alocando em title a posição 2 de partes
            this.director = partes[3].isEmpty() ? "NaN" : partes[3].replaceAll("^\"|\"$", "").replaceAll("\"\"", ""); // if partes[3] vazia this.director = "NaN" else this.director = partes[3]
            this.cast = partes[4].isEmpty() ? new String[] { "NaN" } : partes[4].replace("\"", "").split(",");
+           
            
            for (int i = 0; i < this.cast.length; i++) {
                 this.cast[i] = this.cast[i].trim();
@@ -209,78 +189,69 @@ import java.util.Arrays;
            for (int i = 0; i < this.listedIn.length; i++) {
                 this.listedIn[i] = this.listedIn[i].trim();
             }
-            
-            showId[aux] = this.title;
            
        } catch(Exception e){
            
-          // System.out.println("Erro ao ler a linha" + linha);
+           //System.out.println("Erro ao ler a linha" + linha);
        }
+       
     }
 }
 
 
 
-
 public class TP02Q03 {
     
-        public static void PesquisaSequencial(String showsID[], String title[], int tamanho, int count){
     
-        boolean resp = false; 
-        for(int i = 0; i < tamanho; i++){
+    public static void pesquisaSequencial (ArrayList<String> TitulosDosIds, ArrayList<String> shows ){
+        System.out.println("NAO");
+        for (String tituloShow : shows) {
+            boolean encontrado = false;
             
-            if(showsID[i] == title[count])
+            // Pesquisa sequencial na lista TitulosDosIds
+            for (String tituloId : TitulosDosIds) {
+                if (tituloId.equals(tituloShow)) {
+                    System.out.println("SIM");
+                    encontrado = true;
+                    break; 
+                }
+            }
             
-            resp = true;
-            i = tamanho;
+            // Caso não encontre o título
+            if (!encontrado) {
+                System.out.println("NAO");
+            }
         }
         
         
-        if(resp){
-            System.out.println("SIM");
-        }else{
-            System.out.println("NAO");
-            }
+        
+    }
     
-}
- 
     
     public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
         ArrayList<String> lista = new ArrayList<>();
+        ArrayList<String> shows = new ArrayList<>();
 
-        boolean isfimID = true;
         // Lê todos os IDs digitados
-        while (isfimID) {
+        while (true) {
             String linha = scanner.nextLine();
-            if (linha.equalsIgnoreCase("FIM")) {
-                isfimID = false;
-                }
-               
+            if (linha.equalsIgnoreCase("FIM")) break;
             lista.add(linha);
         }
         
-        // Lê todos os titulos digitados 
-        String[] title = new String[100];
-        boolean isfimTitle = true;
-        int count = 0;
-        while (isfimTitle) {
-            String titulo = scanner.nextLine();
-            
-            if (titulo.equalsIgnoreCase("FIM")) {
-                isfimTitle = false;
-                }
-            title[count] = titulo;
-            
-            count++;
+        
+         // Lê todos os SHOWS digitados
+        while (true) {
+            String linha = scanner.nextLine();
+            if (linha.equalsIgnoreCase("FIM")) break;
+            shows.add(linha);
         }
         
-        
-       // string criada para colocar todos os titulos lidos do id
-       String[] showsID = new String[lista.size()];
-       int aux = 0;
+        //aqui vou armazenar o titulo dos ids lidos 
+        ArrayList<String> TitulosDosIds = new ArrayList<>();
        
-       BufferedReader br = new BufferedReader(new FileReader("disneyplus.csv")); // leitura do arquivo
+       BufferedReader br = new BufferedReader(new FileReader("/tmp/disneyplus.csv")); // leitura do arquivo
        String CSV;
        br.readLine(); //pula a primeira linha do cabeçalho do CSV
        ArrayList<Show> todosShows = new ArrayList<>();
@@ -288,66 +259,25 @@ public class TP02Q03 {
         for (int i = 0; i < lista.size(); i++) { // vai de 0 ao tamanho da lista de IDs coletados
             String id = lista.get(i); // Pega o ID atual da lista de entrada
            
-       
+        int aux = 0;
         while ((CSV = br.readLine()) != null) {
             Show s = new Show();
-            s.ler(CSV, showsID, aux);
-            aux++;
+            s.ler(CSV);
             todosShows.add(s);
+            if(lista.contains(s.getShowId())){
+            TitulosDosIds.add(s.getTitle()); // adiciona o título ao vetor
+            }
+            
         }
-
-
-       
-        for (int j = 0; j < todosShows.size(); j++) {
-            Show s = todosShows.get(j);
-
-
-
-        // Verifica se o ID do show atual é igual ao que o usuário digitou
-        if (s.getShowId().equals(id)) {
-            s.mostrar(); // Se for igual, mostra as informações do show
-            break; // Sai do laço interno, pois já encontrou esse ID
-        }
-    }
 }
-
-
-  
-
-        int cont = 0;
-        for(int i = 0; i < lista.size()- 1; i++){
-            
-            PesquisaSequencial(showsID, title, lista.size() - 1, count );
-            count++;
-            
-        }
-
-       
        br.close();
+     
+   
+    pesquisaSequencial(TitulosDosIds, shows);
+       
+       
+       
+       
+       
 }
 }
-
-
-
-
-
-
-
-
-
-
-/*
-
--->li os ID
--->li os titulos 
--->armazenei os titulos dos ids em um vetor
-
-FALTA
-Comparar os titulos usando uma pesquisa sequencial
-e printar o resultado
-
-*/
-
-
-
-
