@@ -1,76 +1,131 @@
 class Celula {
-	public int elemento; // Elemento inserido na Celula.
-	public Celula prox; // Aponta a Celula prox.
+    public int elemento;
+    public Celula prox;
 
-   //Construtor da classe.
-	public Celula() {
-		this(0);
-	}
+    public Celula() {
+        this(0);
+    }
 
-	// Construtor da classe, para elemento int inserido na Celula.
-	public Celula(int elemento) {
-      this.elemento = elemento;
-      this.prox = null;
-	}
+    public Celula(int elemento) {
+        this.elemento = elemento;
+        this.prox = null;
+    }
 }
 
 class Pilha {
-    
-    private Celula topo;
-    
-    public Pilha(){
-        
+
+    public Celula topo;
+
+    public Pilha() {
         topo = null;
     }
-    
-    
-    //metodo para inserir elemento na pilha 
-    public void inserir(int x){
-        
-       Celula tmp = new Celula(x); // cria uma nova "caixinha" tmp
-       tmp.prox = topo; // conecta a nova celula prox  ao topo
-       topo = tmp; // ponteiro topo aponta para tmp
-       tmp = null; // "joga fora" a celula tmp 
-        
+
+    public void inserir(int x) {
+        Celula tmp = new Celula(x);
+        tmp.prox = topo;
+        topo = tmp;
+        tmp = null;
     }
-    
-    
-    public int remover(){
-        
-      if(topo == null){ // caso a pilha esteja vazia entra no if
-          throw new Exception("erro"); // printa erro e encerra o programa 
-      }  
-        
-      int removido = topo.elemento; // pega o elemento que ira ser removido 
-      Celula tmp = topo; // cria um ponteiro apontando para topo
-      topo = topo.prox; // topo aponta para o proximo elemento 
-      tmp = tmp.prox = null; // coloca como nulo o ponteiro e a conexão 
-      
-      return removido; // retorna o elemento removido
-     
+
+    public int remover() throws Exception {
+        if (topo == null) {
+            throw new Exception("erro");
+        }
+
+        int removido = topo.elemento;
+        Celula tmp = topo;
+        topo = topo.prox;
+        tmp.prox = null;
+        tmp = null;
+
+        return removido;
     }
-    
-    
-    public void mostrar(){
-        
-        
+
+    public void mostrar() {
         System.out.print("[");
+        for (Celula i = topo; i != null; i = i.prox) {
+            System.out.print(i.elemento + " ");
+        }
+        System.out.print("]");
+        System.out.println(" ");
+    }
+    
+      public void SomaElementos() {
         
-        for(celula i = topo; i != null; i = i.prox){ // enquanto o prox não for nulo
+        int soma = 0;
+        for (Celula i = topo; i != null; i = i.prox) {
             
-            System.out.print(i.elemento + " "); // printa o elemento
+            soma += i.elemento;
             
         }
         
+        System.out.println("soma dos elementos é:" + soma);
+    }
+    
+    public void MaiorElemento(){
+        int maior = 0;
+        for (Celula i = topo; i != null; i = i.prox) {
+            
+            if(i.elemento > maior){
+                
+            maior = i.elemento;
+            }
+            
+        }
+        
+        System.out.println("o maior elemento é:" + maior);
+    }
+    
+       public void MostrarInverso(){
+        
+        int[] vetor = new int[6];
+        int count = 0;
+        
+        for (Celula i = topo; i != null; i = i.prox) {
+            
+           vetor[count] = i.elemento;
+           count++;
+            
+        }
+        
+        System.out.print("[");
+        for (int i = 4; i >= 0; i--) {
+            
+           System.out.print(vetor[i] + " ");
+            
+        }
         System.out.print("]");
+
+        
+   
+    }
+    
+  
+   
+}
+
+public class PilhaFlexivel {
+    public static void main(String[] args) {
+    
+        try {
+            Pilha pilha = new Pilha();
+            pilha.inserir(4);
+            pilha.inserir(5);
+            pilha.inserir(2);
+            pilha.inserir(6);
+            pilha.inserir(8);
+            pilha.mostrar();
+            pilha.SomaElementos();
+            pilha.MaiorElemento();
+            pilha.MostrarInverso();
+            
+  
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+       
         
     }
     
 }
-
-
-
-
-
-
-
