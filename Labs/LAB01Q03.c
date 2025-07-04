@@ -2,7 +2,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-int main()
+int main() 
 {
 	bool isfim = false;
 	
