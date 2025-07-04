@@ -4,7 +4,7 @@
 typedef struct Celula {
 
 	int pacote;
-	struct Celula* prox;
+	struct Celula* prox; 
 
 } Celula;
 
