@@ -7,7 +7,7 @@ class Show {
     private String title;
     private String director;
     private String[] cast;
-    private String country;
+    private String country; 
     private String date_added;
     private int release_year;
     private String rating;
