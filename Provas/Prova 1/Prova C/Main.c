@@ -7,7 +7,7 @@ int main()
     scanf("%f" , &dinheiro);
 
     int cem = 0;
-    int cinquenta = 0;
+    int cinquenta = 0; 
     int vinte = 0;
     int dez = 0;
     int cinco = 0;
